@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#0B0B0D" />
+    <title>Profil · Linkert</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Manrope:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="page page-home">
+      <!-- Foto besar di atas -->
+      <div class="hero" id="hero">
+        <span
+          class="hero-initials"
+          id="hero-initials"
+          aria-hidden="true"
+        ></span>
+        <!-- <span class="hero-brand">Linkert<span class="brand-dot">.</span></span> -->
+      </div>
+
+      <section class="home-body">
+        <div class="identity">
+          <h1 class="name" id="nama"></h1>
+          <p class="meta">
+            <span id="jabatan"></span
+            ><span class="meta-dot" aria-hidden="true">•</span
+            ><span id="organisasi"></span>
+          </p>
+        </div>
+
+        <a class="info-row" id="link-email-row">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="2" />
+            <path d="M3 7l9 6 9-6" />
+          </svg>
+          <span id="email"></span>
+        </a>
+
+        <div class="action-grid">
+          <a class="btn btn-primary" href="kontak.html">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="10" cy="8" r="4" />
+              <path d="M3 21c0-4 3.1-7 7-7 1.4 0 2.7.4 3.8 1M19 14v6M16 17h6" />
+            </svg>
+            Add Contact
+          </a>
+          <button class="btn btn-outline" id="btn-share" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 15V3M7 8l5-5 5 5" />
+              <path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6" />
+            </svg>
+            Share
+          </button>
+        </div>
+
+        <section class="bio-card" aria-label="Tentang">
+          <p id="bio"></p>
+        </section>
+      </section>
+
+      <footer class="footer">
+        Dibuat dengan <a href="https://linkert.id">Linkert</a>
+      </footer>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
