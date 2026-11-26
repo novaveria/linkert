@@ -52,6 +52,71 @@ function buatVCard(p) {
   ].filter(Boolean).join('\r\n');
 }
 
+// Membuat elemen dengan class dan teks (teks diisi aman lewat textContent)
+function el(tag, kelas, teks) {
+  const node = document.createElement(tag);
+  if (kelas) node.className = kelas;
+  if (teks) node.textContent = teks;
+  return node;
+}
+
+// Portofolio: satu kartu per proyek (gambar, keterangan, daftar pekerjaan)
+function renderPortofolio(daftar) {
+  const section = $('portofolio-section');
+  const wadah = $('portofolio');
+  if (!section || !wadah || !Array.isArray(daftar) || !daftar.length) return;
+
+  daftar.forEach((proyek) => {
+    const kartu = el('article', 'project');
+
+    // Gambar, atau kotak placeholder kalau gambar belum ada
+    const media = el('div', 'project-media');
+    const placeholder = () => {
+      media.classList.add('is-placeholder');
+      media.innerHTML =
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-9 9"/></svg>';
+      media.append(el('span', null, 'Gambar proyek menyusul'));
+    };
+    if (proyek.gambar) {
+      const img = el('img');
+      img.src = proyek.gambar;
+      img.alt = proyek.judul || 'Gambar proyek';
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.onerror = () => { img.remove(); placeholder(); };
+      media.append(img);
+    } else {
+      placeholder();
+    }
+
+    const isi = el('div', 'project-body');
+    const meta = [proyek.kategori, proyek.tahun].filter(Boolean).join(' · ');
+    if (meta) isi.append(el('p', 'project-meta', meta));
+    isi.append(el('h3', 'project-title', proyek.judul));
+    if (proyek.ringkasan) isi.append(el('p', 'project-desc', proyek.ringkasan));
+
+    if (Array.isArray(proyek.dikerjakan) && proyek.dikerjakan.length) {
+      isi.append(el('p', 'project-label', 'Yang saya kerjakan'));
+      const daftarTugas = el('ul', 'project-tasks');
+      proyek.dikerjakan.forEach((tugas) => daftarTugas.append(el('li', null, tugas)));
+      isi.append(daftarTugas);
+    }
+
+    if (proyek.link) {
+      const tautan = el('a', 'project-link', 'Lihat proyek');
+      tautan.href = proyek.link;
+      tautan.target = '_blank';
+      tautan.rel = 'noopener';
+      isi.append(tautan);
+    }
+
+    kartu.append(media, isi);
+    wadah.append(kartu);
+  });
+
+  section.hidden = false;
+}
+
 function tampilkanToast(pesan) {
   const toast = $('toast');
   if (!toast) return;
@@ -81,6 +146,7 @@ function render(p) {
     }
   }
   aturLink('link-email-row', p.email && `mailto:${p.email}`);
+  renderPortofolio(p.portofolio);
 
   // Halaman kontak: foto bulat
   const avatar = $('avatar');
