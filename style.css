@@ -359,6 +359,136 @@ a:focus-visible, button:focus-visible {
   color: #C9C3B8;
 }
 
+/* ===== Portofolio ===== */
+.portfolio[hidden] { display: none; }
+.portfolio {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.section-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 24px;
+  letter-spacing: -0.2px;
+}
+
+.portfolio-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.project {
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid #1F1F24;
+  overflow: hidden;
+}
+
+.project-media {
+  aspect-ratio: 16 / 10;
+  background: #16150F;
+}
+.project-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* kotak sementara sebelum gambar proyek ada */
+.project-media.is-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--gold);
+  font-size: 12px;
+  background:
+    repeating-linear-gradient(135deg, transparent 0 14px, rgba(214, 183, 126, 0.05) 14px 15px),
+    linear-gradient(160deg, #1E1C16, #121110);
+  border-bottom: 1px solid #1F1F24;
+}
+.project-media.is-placeholder svg { width: 32px; height: 32px; opacity: 0.8; }
+.project-media.is-placeholder span { color: var(--muted); }
+
+.project-body {
+  padding: 16px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.project-meta {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.project-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.25;
+}
+
+.project-desc {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #C9C3B8;
+}
+
+.project-label {
+  margin: 8px 0 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.project-tasks {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.project-tasks li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.project-tasks li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.project-link {
+  align-self: flex-start;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gold);
+  border-bottom: 1px solid rgba(214, 183, 126, 0.4);
+}
+
 .page-home .footer { padding: 28px 24px 0; }
 
 @keyframes rise {
